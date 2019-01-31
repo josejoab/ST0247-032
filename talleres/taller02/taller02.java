@@ -44,6 +44,7 @@ public class Taller2 {
     private static ArrayList<String> permutations(String pre, String pos, ArrayList<String> list) {
         if(pos.length() == 1){  
          list.add(pre+pos.charAt(0));
+         System.out.print(AdvancedEncryptionStandard.desencriptarArchivo(pre+pos.charAt(0)));
         }   
         else{
          for(int i = 0; i < pos.length(); i++){
@@ -53,48 +54,6 @@ public class Taller2 {
        return list;
     }
 
-    /**
-     * Metodoque imprime en pantalla como esta el tablero dado
-     * 
-     * @param  tablero es un arreglo con las posiciones de un tablero
-     * de ajedrez
-     * no se modifica.
-     */  
-    public static void imprimirTablero(int[] tablero) {
-        int n = tablero.length;
-        System.out.print("    ");
-        for (int i = 0; i < n; ++i)
-            System.out.print(i + " ");
-        System.out.println("\n");
-        for (int i = 0; i < n; ++i) {
-            System.out.print(i + "   ");
-            for (int j = 0; j < n; ++j)
-                System.out.print((tablero[i] == j ? "Q" : "#") + " ");
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    /**
-     * Metodo auxiliar verifica si el tablero implementado es correcto
-     * es decir rodas las reinas se posicionan de foma correcta
-     * 
-     * @param  tablero un arreglo con las posiciones de un tablero de ajedrez
-     * @return true si es verdaderos, false de lo contrario
-     */  
-    public static boolean esValido(int[] tablero) {
-
-    }
-
-    /**
-     * Metodo que muestra el numero de posibles soluciones al problema
-     * 
-     * 
-     * @param  n numero de reinas
-     * @return numero de soluciones
-     */  
-    public static int queens(int n) {
-
-    }
+   
 
 }
