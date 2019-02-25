@@ -20,7 +20,6 @@ public static void leer_Tablero(){
   Scanner sc  = new Scanner(System.in);
   LinkedList<Integer> resultados = new LinkedList<>();
   int num = sc.nextInt();
-  String[] fila = new  String[num];
   int cont=0;
   while(cont < 10 || num != 0){
      int[][] tablero = leer_Tablero_Aux(num);
