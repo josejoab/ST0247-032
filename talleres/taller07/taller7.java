@@ -39,7 +39,6 @@ public class Taller7 {
   }   
   
   private int elMasPequenoNoVisitado(Digraph g, boolean[] visitados, int[] tabla){
-   // María Sofía
     int menorAux = Integer.MAX_VALUE;
     int aux = -1;
     for(int i = 0; i < tabla.length; i++){
@@ -51,8 +50,7 @@ public class Taller7 {
     return aux;
   }
 
-  private void actualizarLosPesosDeLaTablaConElValorActual(Digraph g, int actual, int[] tabla){
-  // Alejandro peadzo de puto   
+  private void actualizarLosPesosDeLaTablaConElValorActual(Digraph g, int actual, int[] tabla){  
     for(int destino: g.getSuccessors(actual)){
       if(tabla[destino] != Integer.MAX_VALUE){
         tabla[destino] += g.getWeight(actual, destino);
