@@ -49,13 +49,13 @@ public int[] dijkstra(Digraph g, int v){
   }  
   
   // encuentra el costo total del subconjunto de aristas de costo mínimo que conservan el grafo conectado
-    private static void Aux(Grafo g) {
+    private static void Aux(Digraph g) {
         boolean[] visitados = new boolean[g.size()];
         int[] respuesta = llenarInfinitos(g.size());
         prim(g, 0, visitados, respuesta, 0);
     }
 
-    public static int[] prim(Grafo g, int v, boolean[] visitados, int[] respuesta, int contador) {
+    public static int[] prim(Digraph g, int v, boolean[] visitados, int[] respuesta, int contador) {
         if (contador == g.size() - 1) {
             return respuesta;
         }
