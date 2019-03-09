@@ -1,7 +1,35 @@
-import greedy.Digraph;
 import java.util.Arrays;
 
-public class taller7 {
+/**
+ * 
+ * @author Kevin Herrera, Jose Joab
+ */
+
+public class Taller7 {
+
+    public static void main(String[] args) {
+        DigraphAL g1 = new DigraphAL(6);
+		g1.addArc(0, 1, 5);
+		g1.addArc(0, 2, 8);
+		g1.addArc(0, 3, 4);
+		g1.addArc(1, 0, 5);
+		g1.addArc(1, 2, 2);
+		g1.addArc(2, 3, 3);
+		g1.addArc(2, 4, 3);
+		g1.addArc(2, 5, 7);
+		g1.addArc(3, 0, 4);
+		g1.addArc(3, 2, 3);
+		g1.addArc(4, 2, 3);
+		g1.addArc(4, 5, 2);
+		g1.addArc(5, 2, 7);
+		g1.addArc(5, 4, 2);
+		g1.addArc(2, 1, 2);
+        Taller7 s = new Taller7();
+        int[] a = s.prim(g1);
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(i + ": " + a[i]);
+        }
+    }
     
   private int[] llenarUnArregloConInfinitos(int n, int v){
     int[] a = new int[n];
@@ -49,17 +77,16 @@ public int[] dijkstra(Digraph g, int v){
   }  
   
   // encuentra el costo total del subconjunto de aristas de costo mínimo que conservan el grafo conectado
-    private static void Aux(Digraph g) {
+    public int[] prim(Digraph g) {
         boolean[] visitados = new boolean[g.size()];
-        int[] respuesta = llenarInfinitos(g.size());
-        prim(g, 0, visitados, respuesta, 0);
+        int[] respuesta = llenarUnArregloConInfinitos(g.size(),0);
+        return primAux(g, 0, visitados, respuesta, 0);
     }
 
-    public static int[] prim(Digraph g, int v, boolean[] visitados, int[] respuesta, int contador) {
+    private int[] primAux(Digraph g, int v, boolean[] visitados, int[] respuesta, int contador) {
         if (contador == g.size() - 1) {
             return respuesta;
         }
-
         int menorAux = Integer.MAX_VALUE;
         visitados[v] = true;
         int vertice = -1;
@@ -68,7 +95,7 @@ public int[] dijkstra(Digraph g, int v){
             if (visitados[i]) {
                 for (int j : g.getSuccessors(i)) {
                     int menor = g.getWeight(i, j);
-                    if (menor < menorAux) {
+                    if(!visitados[j] && menor < menorAux) {
                         menorAux = menor;
                         vertice = j;
                         verticeInicio = i;
@@ -81,6 +108,6 @@ public int[] dijkstra(Digraph g, int v){
         } else {
             respuesta[vertice] += g.getWeight(verticeInicio, vertice);
         }
-        return prim(g, vertice, visitados, respuesta, contador + 1);
+        return primAux(g, vertice, visitados, respuesta, contador + 1);
     }
 }
