@@ -107,53 +107,7 @@ private static int[] irHaciaN(int origen,int n,Digraph unGrafo,int[] vertex,int 
 }
 
 
- public static ArrayList irHaciaNAux2(Digraph unGrafo){
-  ArrayList<Integer> vertex = new ArrayList();
-  int[] suma = new int[1];
-  ArrayList<Integer> vertexF = new ArrayList();
-  boolean[] visitados= new boolean[unGrafo.size()];
-  suma[0]=9999;
-  vertex.add(0,0);
-  visitados[0]=true;
-  return irHaciaN2(0,unGrafo.size()-1,unGrafo,vertex,1,suma,0,visitados,vertexF);
-  
-}
-
-private static ArrayList irHaciaN2(int origen,int n,Digraph unGrafo,ArrayList<Integer> vertex,int indice,int[] suma,int sumaP,boolean[] visitados,ArrayList vf){
-  if(origen==n){
-    suma[0]=sumaP;
-      vf=vertex;
-    visitados[origen]=false;
-      System.out.println("if uno");
-      System.out.println("Nsumat "+suma[0]);
-      
-    return vf;
-  }
-  else{
-    
-    for(int i: unGrafo.getSuccessors(origen)){
-        if(sumaP+unGrafo.getWeight(origen,i)<suma[0]&& !visitados[i]){ 
-           System.out.println("indice "+ indice);
-           vertex.add(indice,i);
-           visitados[i]=true;
-           System.out.println("true "+i);
-            System.out.println("sumat "+suma[0]);
-            System.out.println("sumap "+sumaP);
-            System.out.println("suma "+(sumaP+unGrafo.getWeight(origen,i)));
-            System.out.println("peso "+unGrafo.getWeight(origen,i));
-            System.out.println("visitados recursion "+Arrays.toString(visitados));
-           vf=irHaciaN2(i,n,unGrafo,vertex,indice+1,suma,sumaP+unGrafo.getWeight(origen,i),visitados,vf);
-        }
-    }
-      System.out.println("salio");
-      visitados[origen]=false;
-      vertex.remove(indice);
-      System.out.println("visitados return "+Arrays.toString(visitados));
-      
-    return vf;
-  }
-}
-
+ 
 public static Digraph iniciador(){
      Scanner teclado = new Scanner(System.in);
     int vertices = teclado.nextInt();
