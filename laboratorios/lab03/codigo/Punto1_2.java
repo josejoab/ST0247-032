@@ -1,4 +1,4 @@
-public class Punto2 {
+public class Punto1_2 {
 
 
 
