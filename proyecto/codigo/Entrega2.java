@@ -69,7 +69,7 @@ public class Entrega2 {
 
 
                         map.put(nuevoVert.id,  listica);
-                        maxCarritostoUniversidad(nuevoVert);
+                        agrupadorDeCarros(nuevoVert);
 
 
                     }
@@ -78,14 +78,14 @@ public class Entrega2 {
                                 Double.parseDouble(coord[2]), coord[3]);
                         LinkedList<Pair<Long, Double>> listica = new LinkedList<>();
                         map.put(nuevoVert.id,  listica);
-                        maxCarritostoUniversidad(nuevoVert);
+                        agrupadorDeCarros(nuevoVert);
                     }
                     else{
                         Vertices nuevoVert = new Vertices(Long.parseLong(coord[0]), Double.parseDouble(coord[1]),
                                 Double.parseDouble(coord[2]), coord[3]+" "+coord[4]);
                         LinkedList<Pair<Long, Double>> listica = new LinkedList<>();
                         map.put(nuevoVert.id,  listica);
-                        maxCarritostoUniversidad(nuevoVert);
+                        agrupadorDeCarros(nuevoVert);
                     }
                 }
             }
@@ -152,35 +152,36 @@ public class Entrega2 {
 
     }
 
-    public static void maxCarritostoUniversidad(Vertices verticesito){
+    public static void agrupadorDeCarros(Vertices vertice){
 
         //(x*x)/(y/2)
-        int x = (int)(verticesito.getCoordx() * 100);
+        
+        int x = (int)(vertice.getCoordx() * 100);
         x = Math.abs(x%100);
-        int y = (int)(verticesito.getCoordy() * 100);
+        int y = (int)(vertice.getCoordy() * 100);
         y = Math.abs(y%100);
         System.out.println(x);
         System.out.println(y);
-        System.out.println("id: " + verticesito.id );
+        System.out.println("id: " + vertice.id );
         System.out.println("x+y: " + (x+y));
-        if(mapaCoches.get(x+y) == null) {
+        if(mapaCoches.get((x*x)/(y/2)) == null) {
             LinkedList<Coche> coches = new LinkedList();
-            mapaCoches.put(x+y,coches);
+            mapaCoches.put((x*x)/(y/2),coches);
             Coche cochesito = new Coche();
-            mapaCoches.get(x+y).add(cochesito);
+            mapaCoches.get((x*x)/(y/2)).add(cochesito);
         }
         boolean agregado = false;
-        for(Coche c : mapaCoches.get(x+y)) {
+        for(Coche c : mapaCoches.get((x*x)/(y/2))) {
             if (c.personasEnCoche.size() < 5) {
-                c.addPersonasCoche((int) verticesito.getId());
+                c.addPersonasCoche((int) vertice.getId());
                 agregado = true;
                 break;
             }
         }
         if(!agregado){
             Coche cochesito = new Coche();
-            mapaCoches.get(x + y).add(cochesito);
-            cochesito.addPersonasCoche((int)verticesito.getId());
+            mapaCoches.get((x*x)/(y/2)).add(cochesito);
+            cochesito.addPersonasCoche((int)vertice.getId());
         }
 
     }
