@@ -22,10 +22,11 @@ public class Punto1 {
     
     
 
+  //metodo de heldkarp auxiliar que permite mantener el control de las operaciones
   public static int heldKarpAux(Digraph grafo ,int[][] DistanciaAcum, int antecesores[][], int vertice, int binarySet) {
         int maskCond=0;
         int set=0;
-        if (DistanciaAcum[vertice][binarySet] == -1) {
+        if (DistanciaAcum[vertice][binarySet] == -1) { // costo desconocido
             int Aux = -1;
             for (int i = 0; i < grafo.size(); i++) {
                 maskCond = (int)Math.pow(2, grafo.size()) - (int) Math.pow(2, i)  - 1;
@@ -46,15 +47,20 @@ public class Punto1 {
         }
     }
 
+    //metodo heldKarp que recibe el grafo
     public static int heldKarp(Digraph grafo) {
         
+        //creamos la matriz de distancias acomuladas
         int[][] distanciaAcum;
         distanciaAcum = new int[grafo.size][(int) Math.pow(2, grafo.size)];
         
+        //creamos la matriz de antecesores
         int[][] antecesores;
         antecesores = new int[grafo.size][(int) Math.pow(2, grafo.size)];
 
 
+        //llenamos la matriz con -1 dado que no sabemos su costo pasando por algun vertice
+        // excepto aquellos vertices que van a otro pasando por el vacio
         for (int i = 0; i < grafo.size;i++) {
             
             for (int j = 0;j < (int) Math.pow(2, grafo.size);j++) {
