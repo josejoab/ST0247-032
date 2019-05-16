@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  * clase main encargada de llamar los metodos del proyecto
- * @author ASUS
+ * @author Joab and Kevin
  */
 public class Main {
 
